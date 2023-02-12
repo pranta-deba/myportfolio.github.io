@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        .container {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            display: inline-block;
+        }
+
+        .card1 {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .valc-head {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            width: 45px;
+            margin: 2px;
+        }
+
+        .calculator-screen {
+            padding: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="text-center">Calculator</h1>
+        <div class="card1">
+            <div class="valc-head">
+                <input type="text" name="" id="result" class="calculator-screen z-depth-1" minlength="10" disabled>
+            </div>
+            <div class="calc-body">
+                <div>
+                    <input type="button" class="btn btn-danger" value="C" onclick="ClearResult()">
+                    <input type="button" class="btn btn-primary" value="+/-">
+                    <input type="button" class="btn btn-primary" value="%" onclick="insertNumber('%')">
+                    <input type="button" class="btn btn-primary" value="/" onclick="insertNumber('/')">
+                </div>
+
+                <div>
+                    <input type="button" class="btn btn-dark" value="7" onclick="insertNumber(7)">
+                    <input type="button" class="btn btn-dark" value="8" onclick="insertNumber(8)">
+                    <input type="button" class="btn btn-dark" value="9" onclick="insertNumber(9)">
+                    <input type="button" class="btn btn-primary" value="X" onclick="insertNumber('*')">
+                </div>
+
+                <div>
+                    <input type="button" class="btn btn-dark" value="4" onclick="insertNumber(4)">
+                    <input type="button" class="btn btn-dark" value="5" onclick="insertNumber(5)">
+                    <input type="button" class="btn btn-dark" value="6" onclick="insertNumber(6)">
+                    <input type="button" class="btn btn-primary" value="-" onclick="insertNumber('-')">
+                </div>
+
+                <div>
+                    <input type="button" class="btn btn-dark" value="1" onclick="insertNumber(1)">
+                    <input type="button" class="btn btn-dark" value="2" onclick="insertNumber(2)">
+                    <input type="button" class="btn btn-dark" value="3" onclick="insertNumber(3)">
+                    <input type="button" class="btn btn-primary" value="+" onclick="insertNumber('+')">
+                </div>
+
+                <div>
+                    <input type="button" class="btn btn-danger" value="DEL" onclick="deleteNumber()">
+                    <input type="button" class="btn btn-dark" value="0" onclick="insertNumber(0)">
+                    <input type="button" class="btn btn-primary" value="." onclick="insertNumber('.')">
+                    <input type="button" class="btn btn-success" value="=" onclick="calculate()">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../js/jquery-3.6.3.min.js"></script>
+
+    <script>
+
+        var ResultValue = $("#result");
+        function insertNumber(number) {
+            // alert(number);
+            var existingNumber = ResultValue.val();
+            ResultValue.val(existingNumber + number);
+        };
+
+        function ClearResult() {
+            ResultValue.val("");
+        };
+
+        function calculate(){
+           var result = eval(ResultValue.val());
+           ResultValue.val(result);
+        };
+
+        function deleteNumber(){
+            var presentValue = ResultValue.val();
+            if(presentValue!=''){
+                ResultValue.val(presentValue.slice(0,-1));
+            }
+        };
+
+    </script>
+</body>
+
+</html>
